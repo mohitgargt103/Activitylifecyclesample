@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mohit.com.activitylifecyclesample.R;
 import mohit.com.activitylifecyclesample.app.MyApplication;
+import mohit.com.activitylifecyclesample.util.Utility;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        MyApplication.getList().add("MainActivity--------------onCreate");
+        Utility.print("\"MainActivity--------------onCreate\"");
+        new MyApplication().onCreate();
     }
 
 
@@ -36,56 +38,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
-        MyApplication.getList().add("MainActivity--------------onStart");
+        Utility.print("\"MainActivity--------------onStart\"");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        MyApplication.getList().add("MainActivity--------------onRestart");
+        Utility.print("\"MainActivity--------------onRestart\"");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MyApplication.getList().add("MainActivity--------------onResume");
-        printData(true);
+        Utility.print("\"MainActivity--------------onResume\"");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MyApplication.getList().add("MainActivity--------------onPause");
+        Utility.print("\"MainActivity--------------onPause\"");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        MyApplication.getList().add("MainActivity--------------onStop");
+        Utility.print("\"MainActivity--------------onStop\"");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyApplication.getList().add("MainActivity--------------onDestroy");
+        Utility.print("\"MainActivity--------------onDestroy\"");
     }
 
 
-    private void printData(boolean isCleanAll) {
-        if (isCleanAll) {
-            txtActionReport.append("----------------------------------------");
-            txtActionReport.append("\n");
-            for (int i = 0; i < MyApplication.getList().size(); i++) {
-                txtActionReport.append(MyApplication.getList().get(i));
-                txtActionReport.append("\n");
-            }
-        } else {
-            txtActionReport.append(MyApplication.getList().get(MyApplication.getList().size() - 1));
-            txtActionReport.append("\n");
-        }
-
-
-    }
 }

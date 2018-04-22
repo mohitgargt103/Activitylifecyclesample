@@ -8,6 +8,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mohit.com.activitylifecyclesample.R;
 import mohit.com.activitylifecyclesample.app.MyApplication;
+import mohit.com.activitylifecyclesample.util.Utility;
 
 public class B extends AppCompatActivity {
     @BindView(R.id.txtActionReport)
@@ -18,59 +19,44 @@ public class B extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a);
         ButterKnife.bind(this);
-        MyApplication.getList().add("B--------------onCreate");
+        Utility.print("\"B--------------onCreate\"");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        MyApplication.getList().add("B--------------onStart");
+        Utility.print("\"B--------------onStart\"");
+
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        MyApplication.getList().add("B--------------onRestart");
+        Utility.print("\"B--------------onRestart\"");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MyApplication.getList().add("B--------------onResume");
-        printData(true);
+        Utility.print("\"B--------------onResume\"");
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MyApplication.getList().add("B--------------onPause");
+        Utility.print("\"B--------------onPause\"");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        MyApplication.getList().add("B--------------onStop");
+        Utility.print("\"B--------------onStop\"");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyApplication.getList().add("B--------------onDestroy");
+        Utility.print("\"B--------------onDestroy\"");
     }
-
-
-    private void printData(boolean isCleanAll) {
-        if (isCleanAll) {
-            txtActionReport.append("----------------------------------------");
-            txtActionReport.append("\n");
-            for (int i = 0; i < MyApplication.getList().size(); i++) {
-                txtActionReport.append(MyApplication.getList().get(i));
-                txtActionReport.append("\n");
-            }
-        } else {
-            txtActionReport.append(MyApplication.getList().get(MyApplication.getList().size() - 1));
-            txtActionReport.append("\n");
-        }
-    }
-
 }

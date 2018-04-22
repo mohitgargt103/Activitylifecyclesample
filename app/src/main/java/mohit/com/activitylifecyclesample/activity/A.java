@@ -11,17 +11,19 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mohit.com.activitylifecyclesample.R;
 import mohit.com.activitylifecyclesample.app.MyApplication;
+import mohit.com.activitylifecyclesample.util.Utility;
 
 public class A extends AppCompatActivity {
     @BindView(R.id.txtActionReport)
     TextView txtActionReport;
+    Utility get;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a);
         ButterKnife.bind(this);
-        MyApplication.getList().add("A--------------onCreate");
+        Utility.print("\"A--------------onCreate\"");
     }
 
     @OnClick({R.id.btnNext})
@@ -36,54 +38,37 @@ public class A extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        MyApplication.getList().add("A--------------onStart");
+        Utility.print("\"A--------------onStart\"");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        MyApplication.getList().add("A--------------onRestart");
+        Utility.print("\"A--------------onRestart\"");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MyApplication.getList().add("A--------------onResume");
-        printData(true);
+        Utility.print("\"A--------------onResume\"");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MyApplication.getList().add("A--------------onPause");
+        Utility.print("\"A--------------onPause\"");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        MyApplication.getList().add("A--------------onStop");
+        Utility.print("\"A--------------onStop\"");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyApplication.getList().add("A--------------onDestroy");
+        Utility.print("\"A--------------onDestroy\"");
     }
 
-
-    private void printData(boolean isCleanAll) {
-        if (isCleanAll) {
-            txtActionReport.append("----------------------------------------");
-            txtActionReport.append("\n");
-            for (int i = 0; i < MyApplication.getList().size(); i++) {
-                txtActionReport.append(MyApplication.getList().get(i));
-                txtActionReport.append("\n");
-            }
-        } else {
-            txtActionReport.append(MyApplication.getList().get(MyApplication.getList().size() - 1));
-            txtActionReport.append("\n");
-        }
-
-
-    }
 }
